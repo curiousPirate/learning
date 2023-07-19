@@ -4,3 +4,4 @@
 
 - Closures
 - Promises
+- Rock paper scissor game

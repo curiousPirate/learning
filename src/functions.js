@@ -4,24 +4,24 @@
 // In a function declaration, you define a function using the function keyword followed by the function name and a set of parentheses containing the function parameters. The function body is enclosed in curly braces {}. Function declarations are hoisted, which means they are available throughout the scope where they are defined, even before the actual function declaration in the code.
 // Example of function declaration:
 
-function addNum(a, b) {
-  return a + b;
-}
+// function addNum(a, b) {
+//   return a + b;
+// }
 
 // Function Expression:
 // In a function expression, you define a function as part of an expression. The function is assigned to a variable or a constant. Function expressions are not hoisted, so they cannot be called before the actual expression in the code.
 // Example of function expression:
 
-const add = function(a, b) {
-  return a + b;
-};
+// const add = function(a, b) {
+//   return a + b;
+// };
 
 // With ES6 and the introduction of arrow functions, function expressions are more commonly used.
 
 // Example of arrow function expression:
 
 
-const addNumber = (a, b) => a + b;
+// const addNumber = (a, b) => a + b;
 
 
 // Key differences between function declaration and function expression:
@@ -43,13 +43,13 @@ const addNumber = (a, b) => a + b;
 
 
 // Function declaration (hoisted)
-console.log(add(2, 3)); // Output: 5
+// console.log(add(2, 3)); // Output: 5
 
-function addnums(a, b) {
-  return a + b;
-}
+// function addNum(a, b) {
+//   return a + b;
+// }
 
-console.log(add(5, 6)); // Output: 11
+// console.log(add(5, 6)); // Output: 11
 
 
 // In this example, the function add is declared after the first console.log, but it still works because of hoisting. The function declaration is moved to the top during the compilation phase, so it is available throughout the whole file.
@@ -58,13 +58,13 @@ console.log(add(5, 6)); // Output: 11
 
 
 // Function expression (not hoisted)
-console.log(subtract(8, 3)); // Error: subtract is not a function
+// console.log(subtract(8, 3)); // Error: subtract is not a function
 
-const subtract = function(a, b) {
-  return a - b;
-};
+// const subtract = function(a, b) {
+//   return a - b;
+// };
 
-console.log(subtract(8, 3)); // Output: 5
+// console.log(subtract(8, 3)); // Output: 5
 
 // In this example, the function subtract is defined using a function expression, and it is not hoisted. Trying to call the function before the actual expression will result in an error. The function must be defined before you can use it.
 

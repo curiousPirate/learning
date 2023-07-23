@@ -6,25 +6,25 @@ var comparisonOperators = [
   "Greater Than",
   "Less Than",
 ];
-var arithmaticOperators = ["+", "-", "%"];
+var arithmeticOperators = ["+", "-", "%"];
 var logicalOperators = ["and", "or", "not"];
 var myString = "Hello String";
 
 
 
-arithmaticOperators.forEach(function (params) {
+arithmeticOperators.forEach(function (params) {
 
   console.log(params);
 })
 
-let indexfind = arithmaticOperators.indexOf("-")
+let indexFind = arithmeticOperators.indexOf("-")
 
-arithmaticOperators.filter(function (p) {
+arithmeticOperators.filter(function (p) {
   
   return p === "%"
 })
 
-console.log(indexfind);
+console.log(indexFind);
 //Array Methods
 // Sorts comparisonOperators array and returns the sorted array
 comparisonOperators.sort();
@@ -33,10 +33,10 @@ comparisonOperators.sort();
 console.log(comparisonOperators);
 
 // Adds elements to end of an array. Takes in at least one parameter
-arithmaticOperators.push("%");
+arithmeticOperators.push("%");
 
 //Logs array with element "%" added to end
-console.log(arithmaticOperators);
+console.log(arithmeticOperators);
 
 //Returns selected elements as a new array.
 var logicalOperatorsSliced = logicalOperators.slice(0, 2);
@@ -44,7 +44,7 @@ var logicalOperatorsSliced = logicalOperators.slice(0, 2);
 //Logs new array
 console.log(logicalOperatorsSliced);
 
-// The orginal array is unchanged
+// The original array is unchanged
 console.log(logicalOperators);
 
 //String Methods
@@ -52,5 +52,5 @@ console.log(logicalOperators);
 var myNewString = myString.replace("String", "World");
 console.log(myNewString);
 
-//The orginal string is unchanged
+//The original string is unchanged
 console.log(myString);

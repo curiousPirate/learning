@@ -65,12 +65,13 @@ function startBlackjack() {
   GameResults(playerScore, dealerScore);
 }
 
-function BlackJack() {
+function BlackJack(playerScore) {
   return (
     <div>
       <button type="button" onClick={startBlackjack}>
         Play Black Jack
       </button>
+      <div id="playerScore">Player Score: {playerScore}</div>
     </div>
   );
 }

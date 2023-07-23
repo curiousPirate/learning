@@ -1,76 +1,78 @@
-// Initial scores
-let player = 0;
-let dealer = 0;
-
-// Random card values
-const cardValues = []
-
-// Initiating function
-function startBlackjack() {
-  
-  // Welcome message
-  alert("Get ready to play Black Jack!");
-
-  // Initial scores
-  let initialPlayerScore = player;
-  let initialDealerScore = dealer;
-
-  // Game results
-  GameResults()
+function randomCard() {
+  const cardValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  let random = Math.floor(Math.random() * cardValues.length);
+  return cardValues[random];
 }
 
-  // Probability of card nos. for dealer and player
-  const gameSet = [4, 5, 6, 7, 8];
+function playersTurn() {
+  alert("Player's Turn!");
 
-  // Random set generator
-  let random = Math.floor(Math.random(gameSet) * gameSet.length);
-  random = gameSet[random];
+  let playerScore = 0;
+  let playersChoice = true;
 
-  // Player turn
-  alert("Player's turn");
-
-  player += random;
-
-  let playerChoice = window.confirm("You got " + random + ". Now your total is " + player + ", Do you want to continue?")
-while ( playerChoice === true && player < 22 ) {
-  playerChoice = window.confirm("You got " + random + ". Now your total is " + player + ", Do you want to continue?");
-  player += random;
-}
-
-  // Dealer chance
-  alert("Now Dealers turn");
-  while (dealer <= player && dealer < 22) {
-    dealer += random;
-    alert("Dealer's hand: " + dealer);
+  while (playersChoice === true && playerScore < 22) {
+    const randomCardValue = randomCard();
+    playerScore += randomCardValue;
+    playersChoice = window.confirm(
+      "You got " + randomCardValue + ". And your total is " + playerScore
+    );
   }
 
-  // Player game status
-  if (player > dealer && player < 22) {
-    alert("Player won!");
-  } else if (dealer === 21) {
+  return playerScore;
+}
+
+function dealersTurn(playerScore) {
+  alert("Dealer's Turn!");
+
+  let dealerScore = 0;
+
+  while (dealerScore < playerScore && dealerScore < 22) {
+    const randomCardValue = randomCard();
+    dealerScore += randomCardValue;
+    alert("Dealer got: " + randomCardValue + ".\nDealer score: " + dealerScore);
+  }
+
+  return dealerScore;
+}
+
+function GameResults(playerScore, dealerScore) {
+  // Game results
+  if (playerScore === 21) {
     alert("Player BLACKJACK!");
-  } else if (player === dealer) {
+  } else if (playerScore === dealerScore) {
     alert("It's a tie!");
+  } else if (playerScore > dealerScore && playerScore < 22) {
+    alert("Player won!");
   } else {
     alert("Player Lost!");
   }
 
-  // Dealer game status
-  if (dealer > player && dealer < 22) {
-    alert("Dealer won!");
-  } else if (dealer === 21) {
+  if (dealerScore === 21) {
     alert("Dealer BLACKJACK!");
+  } else if (dealerScore > playerScore && dealerScore < 22) {
+    alert("Dealer won!");
   } else {
     alert("Dealer Lost!");
   }
+}
 
+function startBlackjack() {
+  alert("Get ready to play Black Jack!");
+
+  const playerScore = playersTurn();
+  const dealerScore = dealersTurn(playerScore);
+
+  GameResults(playerScore, dealerScore);
+}
 
 function BlackJack() {
   return (
     <div>
-      <button type="button" onClick={startBlackjack}>Play Black Jack</button>
+      <button type="button" onClick={startBlackjack}>
+        Play Black Jack
+      </button>
     </div>
-  )
+  );
 }
 
 export default BlackJack;

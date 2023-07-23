@@ -1,122 +1,197 @@
-alert("Get ready to play Black Jack!");
+// // ChatGPT version
+// function getRandomCard() {
+//   const gameSet = [4, 5, 6, 7, 8];
+//   const randomIndex = Math.floor(Math.random() * gameSet.length);
+//   return gameSet[randomIndex];
+// }
 
-// Initial scores
-let player = 0;
-let dealer = 0;
+// function getPlayerChoiceMessage(random, playerTotal) {
+//   return `You got ${random}. Now your total is ${playerTotal}. Do you want to continue?`;
+// }
 
-// Probability of card nos. for dealer and player
-const gameSet = [4, 5, 6, 7, 8]
+// function getPlayerTotal() {
+//   let playerTotal = 0;
+//   let playerChoice = true;
 
-// Random set generator
-let random = Math.floor(Math.random(gameSet) * gameSet.length);
-random = gameSet[random];
+//   alert("Player's turn");
 
-// Player turn
-alert("Player's turn")
+//   while (playerChoice === true && playerTotal < 22) {
+//     const random = getRandomCard();
+//     playerTotal += random;
+//     playerChoice = confirm(getPlayerChoiceMessage(random, playerTotal));
+//   }
 
-player += random;
+//   return playerTotal;
+// }
 
-let playerChoice = confirm("You got " + random + ". Now your total is " + player + ", Do you want to continue?")
-while ( playerChoice === true && player < 22 ) {
-  playerChoice = confirm("You got " + random + ". Now your total is " + player + ", Do you want to continue?");
-  player += random;
-}
+// function getDealerTotal(playerTotal) {
+//   let dealerTotal = 0;
 
-// Dealer chance
-alert("Now Dealers turn")
-while ( dealer <= player && dealer < 22) {
-      dealer += random;
-      alert("Dealer's hand: " + dealer);
-}
+//   alert("Now Dealers turn");
 
-// Player game status
-if (player > dealer && player < 22) {
-  alert("Player won!");
-} else if (dealer === 21) {
-  alert("Player BLACKJACK!");
-} else if (player === dealer) {
-  alert("It's a tie!");
-} else {
-    alert("Player Lost!");
-}
+//   while (dealerTotal <= playerTotal && dealerTotal < 22) {
+//     const random = getRandomCard();
+//     dealerTotal += random;
+//     alert("Dealer's hand: " + dealerTotal);
+//   }
 
-// Dealer game status
-if (dealer > player && dealer < 22) {
-  alert("Dealer won!")
-} else if (dealer === 21) {
-  alert("Dealer BLACKJACK!")
-} else {
-  alert("Dealer Lost!")
-}
+//   return dealerTotal;
+// }
 
-// ChatGPT version
-function getRandomCard() {
-  const gameSet = [4, 5, 6, 7, 8];
-  const randomIndex = Math.floor(Math.random() * gameSet.length);
-  return gameSet[randomIndex];
-}
+// function getGameStatus(playerTotal, dealerTotal) {
+//   if (playerTotal > dealerTotal && playerTotal < 22) {
+//     alert("Player won!");
+//   } else if (playerTotal === 21) {
+//     alert("Player BLACKJACK!");
+//   } else if (playerTotal === dealerTotal) {
+//     alert("It's a tie!");
+//   } else {
+//     alert("Player Lost!");
+//   }
 
-function getPlayerChoiceMessage(random, playerTotal) {
-  return `You got ${random}. Now your total is ${playerTotal}. Do you want to continue?`;
-}
+//   if (dealerTotal > playerTotal && dealerTotal < 22) {
+//     alert("Dealer won!");
+//   } else if (dealerTotal === 21) {
+//     alert("Dealer BLACKJACK!");
+//   } else {
+//     alert("Dealer Lost!");
+//   }
+// }
 
-function getPlayerTotal() {
-  let playerTotal = 0;
-  let playerChoice = true;
+// function playBlackJack() {
+//   alert("Get ready to play Black Jack!");
 
-  alert("Player's turn");
+//   const playerTotal = getPlayerTotal();
+//   const dealerTotal = getDealerTotal(playerTotal);
 
-  while (playerChoice === true && playerTotal < 22) {
-    const random = getRandomCard();
-    playerTotal += random;
-    playerChoice = confirm(getPlayerChoiceMessage(random, playerTotal));
-  }
+//   getGameStatus(playerTotal, dealerTotal);
+// }
 
-  return playerTotal;
-}
+// // Start the game
+// playBlackJack();
 
-function getDealerTotal(playerTotal) {
-  let dealerTotal = 0;
+// // Bootcamp Version
+// var game = {
+//   player: 0,
+//   dealer: 0,
+//   goal: 21,
+//   isPlayerTurn: false,
+// };
 
-  alert("Now Dealers turn");
+// function blackjack() {
+//   // Should give player a number between 4 and 21
+//   game.player = randomNum(4, 21);
+//   game.dealer = randomNum(2, 11);
+//   console.log("player", game.player);
 
-  while (dealerTotal <= playerTotal && dealerTotal < 22) {
-    const random = getRandomCard();
-    dealerTotal += random;
-    alert("Dealer's hand: " + dealerTotal);
-  }
+//   if (game.player === game.goal) {
+//     game.wins++;
+//     alert("Blackjack!");
+//   } else {
+//     do {
+//       gamePlay(game.player, game.dealer);
+//     } while (game.isPlayerTurn === true);
+//   }
+// }
 
-  return dealerTotal;
-}
+// // Function to hold the actual gameplay. Keeps the blackjack function clean
+// function gamePlay(playerTotal, dealerTotal) {
+//   // Should show the Dealer's number between 2 and 11
+//   // Player can Hit or Stay
+//   var hit = confirm(
+//     "Your hand is " +
+//       playerTotal.toString() +
+//       ".\nThe Dealer shows " +
+//       game.dealer.toString() +
+//       ". Hit or Stand?"
+//   );
+//   if (hit) {
+//     game.isPlayerTurn = true;
 
-function getGameStatus(playerTotal, dealerTotal) {
-  if (playerTotal > dealerTotal && playerTotal < 22) {
-    alert("Player won!");
-  } else if (playerTotal === 21) {
-    alert("Player BLACKJACK!");
-  } else if (playerTotal === dealerTotal) {
-    alert("It's a tie!");
-  } else {
-    alert("Player Lost!");
-  }
+//     // If Hit add a number between 2 and 11
+//     game.player = game.player + randomNum(2, 11);
+//     console.log("player", game.player);
+//     // If >21 Player loses
+//     if (game.player > game.goal) {
+//       gameEnd();
+//       alert("Player Bust with " + game.player.toString());
+//     } else if (game.player === game.goal) {
+//       alert("You have 21!");
+//       dealerTurn();
+//     }
+//   } else {
+//     dealerTurn();
+//   }
+// }
 
-  if (dealerTotal > playerTotal && dealerTotal < 22) {
-    alert("Dealer won!");
-  } else if (dealerTotal === 21) {
-    alert("Dealer BLACKJACK!");
-  } else {
-    alert("Dealer Lost!");
-  }
-}
+// // Function to Hold Dealer Turn. Keeps the gameplay function clean
+// function dealerTurn() {
+//   do {
+//     game.dealer = game.dealer + randomNum(2, 11);
+//     console.log("game.dealer", game.dealer);
+//     // If Stay show dealer number
+//     alert(
+//       "Stand at " + game.player.toString() + ".\nDealer shows " + game.dealer
+//     );
+//     // if < 17 add number between 2 and 11, repeat if less than 17
+//   } while (game.dealer < 17);
 
-function playBlackJack() {
-  alert("Get ready to play Black Jack!");
+//   // if > 21 Dealer lose
+//   if (game.dealer > game.goal) {
+//     alert("Dealer Busts!");
+//     gameEnd();
+//   } else {
+//     // if neither lose, compare both numbers to 21. Whoever is closer wins.
+//     var dealerDistance = game.goal - game.dealer;
+//     var playerDistance = game.goal - game.player;
 
-  const playerTotal = getPlayerTotal();
-  const dealerTotal = getDealerTotal(playerTotal);
+//     if (playerDistance > dealerDistance) {
+//       alert(
+//         "Dealer had " +
+//           game.dealer.toString() +
+//           ".\nYou had " +
+//           game.player.toString() +
+//           ".\nYou Lose :("
+//       );
+//       gameEnd();
+//     } else if (playerDistance < dealerDistance) {
+//       alert(
+//         "Dealer had " +
+//           game.dealer.toString() +
+//           ".\nYou had " +
+//           game.player.toString() +
+//           ".\nYou Win :)"
+//       );
+//       gameEnd();
+//     } else {
+//       alert(
+//         "Dealer had " +
+//           game.dealer.toString() +
+//           ".\nYou had " +
+//           game.player.toString() +
+//           ".\n You Push."
+//       );
+//       gameEnd();
+//     }
+//   }
+// }
 
-  getGameStatus(playerTotal, dealerTotal);
-}
+// // Utility Function
+// function randomNum(min, max) {
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
 
-// Start the game
-playBlackJack();
+// function gameEnd() {
+//   game.isPlayerTurn = false;
+// }
+
+// var start = confirm("Would you like to play blackjack?");
+
+// if (start) {
+//   blackjack();
+// } else {
+//   alert("Come again!");
+// }
+
